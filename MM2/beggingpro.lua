@@ -1,5 +1,5 @@
-repeat task.wait() until game:IsLoaded()
-    if game.PlaceId == "142823291" then
+if game.PlaceId == "142823291" then
+    repeat task.wait() until game:IsLoaded()
     local list = {
         "Can I please have some free, common, stuff? Anything would be really helpful! It's OK if you don't want to :) Thanks!",
         "Any free items you can spare would be a huge help. No pressure, thanks!",
@@ -67,7 +67,6 @@ repeat task.wait() until game:IsLoaded()
                 queue_on_teleport("https://raw.githubusercontent.com/CodePhoenixLUA/LUAU/refs/heads/main/MM2/beggingpro.lua")
             end
         end)
-    end
         serverhop()
-    
     end
+end
