@@ -60,7 +60,13 @@ _G.autochat = true
 while _G.autochat do
     for i,v in pairs(list) do
         chatService.TextChannels.RBXGeneral:SendAsync(v)
-        task.wait(10)
+        task.wait(30)
     end
+    game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
+        if State == Enum.TeleportState.Started then
+            queue_on_teleport("https://raw.githubusercontent.com/CodePhoenixLUA/LUAU/refs/heads/main/MM2/beggingpro.lua")
+        end
+    end)
     serverhop()
+
 end
