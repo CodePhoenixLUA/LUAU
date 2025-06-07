@@ -1,3 +1,5 @@
+repeat task.wait() until game:IsLoaded()
+
 local list = {
     "does anyone has a free common plz ill be super grateful",
     "please free gray stuff im just starting out",
