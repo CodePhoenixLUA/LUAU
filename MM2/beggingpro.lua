@@ -1,7 +1,7 @@
 local list = {
-    "Can I please have some free, common, stuff? Anything would be really helpful! It's OK if you don't want to :) Thanks!",
-    "Any free items you can spare would be a huge help. No pressure, thanks!",
-    "I'm just starting out in MM2, does anyone have some free commons? It will mean the world to me, and prove that MM2 players are kind souls!"
+    "does anyone has a free common plz ill be super grateful",
+    "please free gray stuff im just starting out",
+    "can I get some spare bad stuff I'm new to MM2 trading plz"
 }
 
 function serverhop()
