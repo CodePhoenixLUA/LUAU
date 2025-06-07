@@ -51,7 +51,7 @@ while _G.autochat do
         end
     end)
     
-    task.wait(1)
+    task.wait()
     
     serverhop()
 end
