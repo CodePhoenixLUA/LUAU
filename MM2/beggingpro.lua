@@ -6,15 +6,6 @@ local list = {
     "can I get some spare bad stuff I'm new to MM2 trading plz"
 }
 
-function serverhop()
-    local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100"))
-    for i,v in pairs(Servers.data) do
-        if v.playing ~= v.maxPlayers then
-            game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
-        end
-    end
-end
-
 local text1 = game.Players.LocalPlayer.PlayerGui.MainGUI.Game.Leaderboard.Container.TradeRequest.ReceivingRequest
 text1:GetPropertyChangedSignal("Visible"):Connect(function()
     if text1.Visible == true then
@@ -44,10 +35,23 @@ while _G.autochat do
         chatService.TextChannels.RBXGeneral:SendAsync(v)
         task.wait(30)
     end
+    
+    function serverhop()
+        local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100"))
+        for i,v in pairs(Servers.data) do
+            if v.playing ~= v.maxPlayers then
+                game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
+            end
+        end
+    end
+
     game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
         if State == Enum.TeleportState.Started then
             queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CodePhoenixLUA/LUAU/refs/heads/main/MM2/beggingpro.lua'))()")
         end
     end)
+    
+    task.wait(1)
+    
     serverhop()
 end
