@@ -59,5 +59,6 @@ while _G.autochat do
             queue_on_teleport("https://raw.githubusercontent.com/CodePhoenixLUA/LUAU/refs/heads/main/MM2/beggingpro.lua")
         end
     end)
+    task.wait(1)
     serverhop()
 end
