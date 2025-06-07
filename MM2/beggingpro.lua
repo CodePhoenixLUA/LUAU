@@ -7,21 +7,11 @@ local list = {
 }
 
 function serverhop()
-    local servers = {}
-    local PlaceId = game.PlaceId
-    local req = game:HttpGet("https://games.roblox.com/v1/games/" .. PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
-    local body = game:GetService("HttpService"):JSONDecode(req)
-    
-    if body and body.data then
-        for i, v in next, body.data do
-            if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= JobId then
-                table.insert(servers, 1, v.id)
-            end
+    local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100"))
+    for i,v in pairs(Servers.data) do
+        if v.playing ~= v.maxPlayers then
+            game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
         end
-    end
-    
-    if #servers > 0 then
-        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], game.Players.LocalPlayer)
     end
 end
 
@@ -56,9 +46,8 @@ while _G.autochat do
     end
     game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
         if State == Enum.TeleportState.Started then
-            queue_on_teleport("https://raw.githubusercontent.com/CodePhoenixLUA/LUAU/refs/heads/main/MM2/beggingpro.lua")
+            queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CodePhoenixLUA/LUAU/refs/heads/main/MM2/beggingpro.lua'))()")
         end
     end)
-    task.wait(1)
     serverhop()
 end
