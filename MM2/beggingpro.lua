@@ -1,3 +1,4 @@
+--put ts in autoexecute reall
 repeat task.wait() until game:IsLoaded()
 
 local list = {
@@ -6,9 +7,10 @@ local list = {
     "can I get some spare bad stuff I'm new to MM2 trading plz"
 }
 
-local text1 = game.Players.LocalPlayer.PlayerGui.MainGUI.Game.Leaderboard.Container.TradeRequest.ReceivingRequest
+local text1 = game.Players.LocalPlayer.PlayerGui.MainGUI.Game.Leaderboard.Container.TradeRequest
 text1:GetPropertyChangedSignal("Visible"):Connect(function()
     if text1.Visible == true then
+        task.wait(1)
         game:GetService("ReplicatedStorage"):WaitForChild("Trade"):WaitForChild("AcceptRequest"):FireServer()
     end
 end)
@@ -44,14 +46,6 @@ while _G.autochat do
             end
         end
     end
-
-    game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
-        if State == Enum.TeleportState.Started then
-            queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CodePhoenixLUA/LUAU/refs/heads/main/MM2/beggingpro.lua'))()")
-        end
-    end)
-    
-    task.wait()
     
     serverhop()
 end
